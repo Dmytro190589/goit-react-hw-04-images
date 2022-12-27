@@ -1,34 +1,34 @@
-import { Component } from 'react';
-import { ImageGallery } from './ImageGallery/ImageGallery';
-import { Searchbar } from './Searchbar/Searchbar';
+import { useState } from 'react';
+import ImageGallery from './ImageGallery/ImageGallery';
+import Searchbar from './Searchbar/Searchbar';
 import css from './app.module.css';
 
-export default class App extends Component {
-  state = {
-    request: '',
-    id: null,
-    page: 1,
+export const App = () => {
+  const [request, setRequest] = useState('');
+  const [page, setPage] = useState(1);
+  const [pictures, setPictures] = useState([])
+
+  const loadMoreBtn = () => {
+    setPage(prevPage => prevPage + 1);
   };
-  loadMoreBtn = () => {
-    this.setState(prevState => ({ page: prevState.page + 1 }));
-  };
-  handleFormSubmit = request => {
-    if (request !== this.state.request) {
-      this.setState({request: request, page: 1});
+  const onSubmit = event => {
+    if ( event !== request){
+      setPictures([]);
+      setRequest(event);
+      setPage(1);
     }
+     
   };
-  render() {
-    const { request, page, pictures } = this.state;
-    return (
-      <div className={css.app}>
-        <Searchbar onSubmit={this.handleFormSubmit} />
-        <ImageGallery
-          request={request}
-          page={page}
-          loadMoreBtn={this.loadMoreBtn}
-          pictures={pictures}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className={css.app}>
+      <Searchbar onSubmit={onSubmit} />
+      <ImageGallery
+        request={request}
+        page={page}
+        loadMoreBtn={loadMoreBtn}
+        pictures = {pictures}
+        setPictures = {setPictures}
+      />
+    </div>
+  );
+};
