@@ -19,14 +19,14 @@ export default function Modal({ largeImage, closeModal }) {
 
     const handleClick = e => {
         if (e.target === e.currentTarget) {
-            this.props.closeModal();
+            closeModal();
         }
     };
 
     return (
         <div className={css.overlay} onClick={handleClick}>
             <div className={css.modal}>
-                <img src={largeImage} alt="big pictures" />
+                <img src={largeImage} alt="big" />
             </div>
         </div>
     );

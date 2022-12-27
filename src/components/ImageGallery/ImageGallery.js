@@ -5,7 +5,7 @@ import css from './ImageGallery.module.css';
 import Button from "./../Button/Button";
 import PropTypes from 'prop-types'
 
-export default function ImageGallery({ 
+export default function ImageGallery({
     request,
     page,
     loadMoreBtn,
@@ -34,7 +34,7 @@ export default function ImageGallery({
     return (
         <>
             <ul className={css.gallery} >
-                {pictures &&
+                {pictures.length &&
                     pictures.map(picture => (
                         <ImageGalleryItem
                             key={picture.id}
