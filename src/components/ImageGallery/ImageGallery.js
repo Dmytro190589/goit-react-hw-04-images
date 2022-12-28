@@ -34,7 +34,7 @@ export default function ImageGallery({
     return (
         <>
             <ul className={css.gallery} >
-                {pictures.length &&
+                {pictures.length > 0 &&
                     pictures.map(picture => (
                         <ImageGalleryItem
                             key={picture.id}
